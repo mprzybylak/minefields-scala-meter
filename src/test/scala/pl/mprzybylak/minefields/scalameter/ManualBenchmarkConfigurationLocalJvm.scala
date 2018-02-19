@@ -6,7 +6,7 @@ import org.scalameter.api.Gen
 import org.scalameter.execution.LocalExecutor
 import org.scalameter.reporting.LoggingReporter
 
-object ManualBenchmarkConfiguration extends Bench[Double] {
+object ManualBenchmarkConfigurationLocalJvm extends Bench[Double] {
 
   // local executor needs implicit pickler
   import org.scalameter.picklers.Implicits._
