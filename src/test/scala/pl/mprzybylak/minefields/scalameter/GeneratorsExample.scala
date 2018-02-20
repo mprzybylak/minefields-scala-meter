@@ -62,8 +62,6 @@ object GeneratorsExample extends Bench.LocalTime {
         }
       }
     }
-
-
   }
 
 
