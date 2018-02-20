@@ -10,7 +10,7 @@ resolvers += "Sonatype OSS Snapshots" at
   "https://oss.sonatype.org/content/repositories/snapshots"
 
 // scala meter dependency
-libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.9"
+libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.10-SNAPSHOT"
 
 // setting up scala meter as additional test framework
 testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
