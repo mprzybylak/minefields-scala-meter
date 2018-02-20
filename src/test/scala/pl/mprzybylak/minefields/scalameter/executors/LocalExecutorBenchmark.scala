@@ -5,7 +5,6 @@ import org.scalameter._
 import org.scalameter.api.Gen
 import org.scalameter.execution.LocalExecutor
 import org.scalameter.reporting.LoggingReporter
-import pl.mprzybylak.minefields.scalameter.ManualBenchmarkConfigurationLocalJvm.{measurer, sizes, using}
 
 class LocalExecutorBenchmark extends Bench[Double] {
 
