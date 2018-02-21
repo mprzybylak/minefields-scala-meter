@@ -1,4 +1,4 @@
-package pl.mprzybylak.minefields.scalameter.executors
+package pl.mprzybylak.minefields.scalameter.measurers
 
 import org.scalameter
 import org.scalameter._
@@ -6,7 +6,7 @@ import org.scalameter.api.Gen
 import org.scalameter.execution.LocalExecutor
 import org.scalameter.reporting.LoggingReporter
 
-object LocalExecutorBenchmark extends Bench[Double] {
+object IgnoreGcMeasurer extends Bench[Double] {
 
   import org.scalameter.picklers.Implicits._
 
@@ -16,7 +16,8 @@ object LocalExecutorBenchmark extends Bench[Double] {
     measurer
   )
 
-  lazy val measurer: Measurer[Double] = new Measurer.Default
+  // this measurer will ignore results where GC was running
+  lazy val measurer: Measurer[Double] = new Measurer.IgnoringGC
 
   lazy val reporter: Reporter[Double] = new LoggingReporter[Double]
 
@@ -29,15 +30,11 @@ object LocalExecutorBenchmark extends Bench[Double] {
   } yield 0 until size
 
   performance of "Sequence" in {
-    measure method "map" config(
-      Key.exec.minWarmupRuns -> 10, // minimum number of warmup runs
-      Key.exec.maxWarmupRuns -> 20, // maxium number of warmup runs
-      Key.exec.warmupCovThreshold -> 0.1, // CoV threshold - whatever it means...
-      Key.exec.benchRuns -> 10 // how many time we should run tests
-    ) in {
+    measure method "map" in {
       using(ranges) in {
         r => Seq.range(r.head, r.last).map(_ + 1)
       }
     }
   }
+
 }
